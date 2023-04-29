@@ -199,11 +199,19 @@ pub mod percolation {
                     for h in 2..4 {
                         roll = rand::random::<u32>();
                         if roll % out_of <= probability_of {
-                            self.nodes[i as usize][j as usize].1[h-1 as usize] = true;
                             if i as i32 + dirh[h] >= 0 && i as i32 + dirh[h] < self.height as i32
                                && j as i32 + dirw[h] >= 0 && j as i32 + dirw[h] < self.width as i32 {
+                                self.nodes[i as usize][j as usize].1[h-1 as usize] = true;
                                 self.nodes[(i as i32 + dirh[h]) as usize][(j as i32 +dirw[h]) as usize]
                                     .1[from_neighbor[h as usize] as usize] =  true;
+                            }
+                        }
+                        else {
+                            if i as i32 + dirh[h] >= 0 && i as i32 + dirh[h] < self.height as i32                
+                              && j as i32 + dirw[h] >= 0 && j as i32 + dirw[h] < self.width as i32 {     
+                              self.nodes[(i as i32 + dirh[h]) as usize][(j as i32 +dirw[h]) as usize]
+                                  .1[from_neighbor[h as usize] as usize] = false;
+                              self.nodes[i as usize][j as usize].1[h-1 as usize] = false;
                             }
                         }
                     }
