@@ -62,18 +62,15 @@ pub mod percolation {
         }
 
         pub fn cli_display_shortened(&self, height: u32, width: u32) -> () {
-
             for i in 0..(height as usize) {
                 for j in 0..(width as usize) {
                     print!("{}", self.nodes[i][j].0.clone().max());
                 }
                 println!();
             }
-        
         }
 
         pub fn cli_display_complete(&self, height: u32, width: u32) -> () {
-        
             for i in 0..(height as usize) {
                 for j in 0..(width as usize) {
                     print!("({} {} {})",
@@ -83,13 +80,10 @@ pub mod percolation {
                 }
                 println!();
             }
-
         }
         
         pub fn cli_display_diagram_complete(&self) {
-        
             for i in 0..(self.height) {
-            
                 for j in 0..(self.width) {
                     print!("({} {} {}){}",
                            self.nodes[i as usize][j as usize].0.r,
@@ -100,24 +94,15 @@ pub mod percolation {
                 if i < self.height - 1 {
                     println!();
                     for h in 0..(self.width) {
-                        //println!();
-                        print!("{}", if self.nodes[i as usize][h as usize].1[2] 
-                               {"| "} else {"  "});
+                        print!("{}", if self.nodes[i as usize][h as usize].1[2]  {"| "} else {"  "});
                     }
-        
                 }
-                
                 println!();
-
             }
-        
         }
 
-
         pub fn cli_display_diagram_shortened(&self) {
-        
             for i in 0..(self.height) {
-            
                 for j in 0..(self.width) {
                     print!("{}{}", self.nodes[i as usize][j as usize].0.clone().max(),
                            if self.nodes[i as usize][j as usize].1[1] {"-"} else {" "} );
@@ -125,48 +110,31 @@ pub mod percolation {
                 if i < self.height - 1 {
                     println!();
                     for h in 0..(self.width) {
-                        //println!();
-                        print!("{}", if self.nodes[i as usize][h as usize].1[2] 
-                               {"| "} else {"  "});
+                        print!("{}", if self.nodes[i as usize][h as usize].1[2] {"| "} else {"  "});
                     }
-        
                 }
-                
                 println!();
-
             }
-        
         }
 
         pub fn cli_display_diagram_no_colors(&self) {
-        
             for i in 0..(self.height) {
-            
                 for j in 0..(self.width) {
-                    print!("O{}",
-                           if self.nodes[i as usize][j as usize].1[1] {"-"} else {" "} );
+                    print!("O{}", if self.nodes[i as usize][j as usize].1[1] {"-"} else {" "} );
                 }
                 if i < self.height - 1 {
                     println!();
                     for h in 0..(self.width) {
-                        //println!();
-                        print!("{}", if self.nodes[i as usize][h as usize].1[2] 
-                               {"| "} else {"  "});
+                        print!("{}", if self.nodes[i as usize][h as usize].1[2] {"| "} else {"  "});
                     }
-        
                 }
-                
                 println!();
-
             }
-        
         }
 
-        
-
-
         // this function uses Lee's algorithm to color the grid properly
-        // as in it 
+        // as in it makes sure that between any two nodes connected by some road
+        // they share the same color
         pub fn recolor_whole(&mut self) -> () {
 
             //we used changed to remember which nodes in the grid we've recolored
@@ -175,19 +143,10 @@ pub mod percolation {
             let dirw: Vec<i32> = vec![0, 1, 0, -1];
 
             struct Position(u32, u32);
-           // let mut lee_stack: Vec<Position> = vec![];
-
-            fn display_stack( stack: &Vec<Position>, inc: usize, sfa: usize ) -> () {
-                for i in inc..sfa {
-                    print!("({} {}), ", stack[i as usize].0, stack[i as usize].1);
-                }
-                println!();
-            }
 
             for i in 0..(self.height) {
             
                 for j in 0..(self.width) {
-                    
                     if changed[i as usize][j as usize] == false {
                     
                         let mut inc = 0;
@@ -195,11 +154,9 @@ pub mod percolation {
                         let the_color: Color = self.nodes[i as usize][j as usize].0.clone();
                         let mut lee_stack: Vec<Position> = vec![];
                         lee_stack.push( Position(i as u32, j as u32) );
-
+                        changed[i as usize][j as usize] = true;
 
                         while inc < sfa {
-                            //println!("({} {}) {}", lee_stack[sfa-1 as usize].0, lee_stack[sfa -1 as usize].1, sfa);
-                            //changed[lee_stack[inc].0 as usize][lee_stack[inc].1 as usize] = true;
                             self.nodes[lee_stack[inc].0 as usize][lee_stack[inc].1 as usize].0 = the_color.clone();
                             for iter in 0..4 {
                                 if lee_stack[inc].0 as i32 + dirh[iter] < self.height as i32
@@ -216,20 +173,16 @@ pub mod percolation {
                                                          (lee_stack[inc].1 as i32 + dirw[iter]) as u32)
                                                 );
                                         changed[(lee_stack[inc].0 as i32 + dirh[iter]) as usize]
-                                               [(lee_stack[inc].1 as i32 + dirw[iter]) as usize] = true;
-                                        
+                                               [(lee_stack[inc].1 as i32 + dirw[iter]) as usize] = true;   
                                         sfa += 1;
                                     }
                                 }
                             }
                             inc += 1;
-
                         }
-
                     }
 
                 }
-
             }
 
         }
@@ -250,13 +203,12 @@ pub mod percolation {
                             if i as i32 + dirh[h] >= 0 && i as i32 + dirh[h] < self.height as i32
                                && j as i32 + dirw[h] >= 0 && j as i32 + dirw[h] < self.width as i32 {
                                 self.nodes[(i as i32 + dirh[h]) as usize][(j as i32 +dirw[h]) as usize]
-                                    .1[from_neighbor[h-1 as usize] as usize] =  true;
+                                    .1[from_neighbor[h as usize] as usize] =  true;
                             }
                         }
                     }
                 }
             }
-            
             if recolor {
                 self.recolor_whole();
             }
