@@ -21,7 +21,7 @@ You can create a new grid struct of height H and width W as follows:
 ```rs
 let mut new_grid = percolation::Grid::new(H, W);
 ```
-Given a probability of a/b for any two nodes to be connected, you can percolate the grid like this:
+Given a probability of a/b for any two neighbor nodes to be connected, you can percolate the grid like this:
 ```rs
 new_grid.percolate(a, b, true);
 ```
