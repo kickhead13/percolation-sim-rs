@@ -5,8 +5,8 @@ A percolation simulator written in rust c;
 percolation-sim-rs is a module for simulating the mathematical/physical phenomena of percolation.
 
 ### Building 
+To build and run the simulator you can :
 ```
 $ cargo build --release
-$ echo "hello world" | ./target/release/djot
-<p>hello world</p>
+$ ./target/release/percolation-sim
 ```
