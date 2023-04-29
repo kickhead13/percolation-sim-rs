@@ -1,0 +1,1 @@
+/home/kickhead13/Desktop/cooding/RUST/percolation-sim/target/debug/percolation-sim: /home/kickhead13/Desktop/cooding/RUST/percolation-sim/src/main.rs /home/kickhead13/Desktop/cooding/RUST/percolation-sim/src/simulator.rs
