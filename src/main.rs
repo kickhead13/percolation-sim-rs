@@ -10,6 +10,7 @@ fn main() {
    g.percolate(10, 100, true);
    println!();
    println!();
-  println!();println!();
+   println!();
+   println!();
    g.cli_display_diagram_shortened();
 }
