@@ -29,8 +29,8 @@ or
 ```rs
 new_grid.percolate(a, b, false);
 ```
-There are many methods within the library used for displaying the grid after percolation. But displaying it using the methods which also display color doesn't produce the expected results. As such, it is recommended as of now to use:
+There are many methods within the library used for displaying the grid after percolation. Such as:
 ```rs
 new_grid.cli_display_diagram_no_colors();
 ```
-for display your grids.
+for display your grid in cli without displaying the color of each node.
