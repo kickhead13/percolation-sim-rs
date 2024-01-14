@@ -7,8 +7,10 @@ percolation-sim-rs is a module for simulating the mathematical/physical phenomen
 ### Building 
 To build and run the simulator you can :
 ```
+$ git clone https://github.com/kickhead13/percolation-sim-rs.git
+$ cd percolation-sim-rs
 $ cargo build --release
-$ ./target/release/percolation-sim
+$ ./target/release/percolation-sim-rs
 ```
 ### Writing your own code
 Just edit main.rs but leave 
