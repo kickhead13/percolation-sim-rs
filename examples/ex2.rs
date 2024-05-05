@@ -5,7 +5,7 @@ use simulator::percolation;
 use rand::prelude::*;
 
 fn main() {
-   let mut g = percolation::Grid::new(100, 100);
+   let mut g = percolation::Grid::new(1000, 1000);
    g.cli_display_diagram_shortened();
    g.percolate(10, 100, true);
    println!();
