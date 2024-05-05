@@ -1,6 +1,5 @@
-#[allow(unused_imports)]
-use rand::prelude::*;
 
+#[allow(dead_code)]
 pub mod percolation {
     
     #[derive(Clone)]
