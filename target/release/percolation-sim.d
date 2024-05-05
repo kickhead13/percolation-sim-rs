@@ -1,1 +1,0 @@
-/home/ana/Desktop/cooding/RUST/percolation-sim-rs/target/release/percolation-sim: /home/ana/Desktop/cooding/RUST/percolation-sim-rs/src/main.rs /home/ana/Desktop/cooding/RUST/percolation-sim-rs/src/simulator.rs
